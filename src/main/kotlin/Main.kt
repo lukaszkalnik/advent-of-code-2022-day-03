@@ -1,7 +1,14 @@
-fun main(args: Array<String>) {
-    println("Hello World!")
+import okio.FileSystem
+import okio.Path.Companion.toPath
 
-    // Try adding program arguments via Run/Debug configuration.
-    // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
-    println("Program arguments: ${args.joinToString()}")
+fun main(args: Array<String>) {
+    val path = args[0].toPath()
+
+    FileSystem.SYSTEM.read(path) {
+        while(true) {
+            val line = readUtf8Line() ?: return
+            if (line.isBlank()) return
+
+        }
+    }
 }

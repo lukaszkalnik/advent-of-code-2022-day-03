@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.7.21"
+    kotlin("jvm") version "1.8.0"
     application
 }
 
@@ -13,6 +13,8 @@ repositories {
 }
 
 dependencies {
+    implementation("com.squareup.okio:okio:3.3.0")
+
     testImplementation(kotlin("test"))
 }
 
