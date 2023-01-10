@@ -18,22 +18,7 @@ fun main(args: Array<String>) {
             val compartment1 = compartment1String.toSet()
             val compartment2 = compartment2String.toSet()
 
-            var sharedItem: Char = '?'
-
-            run breaking@{
-                compartment1.forEach { char1 ->
-                    compartment2.find { it == char1 }?.let {
-                        sharedItem = it
-                        return@breaking
-                    }
-                }
-            }
-
-            println(line)
-            println("$compartment1String, $compartment2String")
-            println("$compartment1, $compartment2")
-            println(sharedItem)
-            println(sharedItem.priority)
+            var sharedItem = compartment1.intersect(compartment2).first()
             prioritySum += sharedItem.priority
         }
         println("Priority sum: $prioritySum")
