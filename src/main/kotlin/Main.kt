@@ -8,32 +8,20 @@ fun main(args: Array<String>) {
 
     FileSystem.SYSTEM.read(path) {
         while (true) {
-            val line = readUtf8Line() ?: break
-            if (line.isBlank()) break
+            val line1 = readUtf8Line() ?: break
+            if (line1.isBlank()) break
+            val line2 = readUtf8Line() ?: break
+            val line3 = readUtf8Line() ?: break
 
-            val halfLength = line.length / 2
-            val compartment1String = line.substring(0, halfLength)
-            val compartment2String = line.substring(halfLength)
+            val rucksack1 = line1.toSet()
+            val rucksack2 = line2.toSet()
+            val rucksack3 = line3.toSet()
 
-            val compartment1 = compartment1String.toSet()
-            val compartment2 = compartment2String.toSet()
-
-            var sharedItem: Char = '?'
-
-            run breaking@{
-                compartment1.forEach { char1 ->
-                    compartment2.find { it == char1 }?.let {
-                        sharedItem = it
-                        return@breaking
-                    }
-                }
-            }
-
-            println(line)
-            println("$compartment1String, $compartment2String")
-            println("$compartment1, $compartment2")
+            val sharedItem = rucksack1.intersect(rucksack2).intersect(rucksack3).first()
+            println(line1)
+            println(line2)
+            println(line3)
             println(sharedItem)
-            println(sharedItem.priority)
             prioritySum += sharedItem.priority
         }
         println("Priority sum: $prioritySum")
