@@ -18,10 +18,6 @@ fun main(args: Array<String>) {
             val rucksack3 = line3.toSet()
 
             val sharedItem = rucksack1.intersect(rucksack2).intersect(rucksack3).first()
-            println(line1)
-            println(line2)
-            println(line3)
-            println(sharedItem)
             prioritySum += sharedItem.priority
         }
         println("Priority sum: $prioritySum")
